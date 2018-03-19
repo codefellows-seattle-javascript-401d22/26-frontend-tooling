@@ -3,7 +3,7 @@
 import './style/main.scss';
 import React from 'react';
 import ReactDom from 'react-dom';
-import cowsay from 'cowsay-browser';
+import { say, DEFAULT, SQUIRREL, KITTY, DRAGON, DOGE, SATANIC } from 'cowsay';
 import faker from 'faker';
 
 class Header extends React.Component {
@@ -23,16 +23,23 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Cowsay lab',
+      title: 'Cowsay Lab',
     };
-    this.clickEvent = this.clickEvent.bind(this);
+    this.selectMenuChange = this.selectMenuChange.bind(this);
+    this.buttonClick = this.buttonClick.bind(this);
   }
 
-  clickEvent(e) {
+  selectMenuChange(e) {
+    this.setState({
+      value: e.target.value
+    })
+  }
+
+  buttonClick(e) {
     this.setState( state => {
-      return { content: cowsay.say({
+      return { content: say({
         text : faker.lorem.sentence(),
-        e : 'oO',
+        cow: this.state.value,
         })
       }
     })
@@ -42,7 +49,19 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <button onClick={this.clickEvent}>Click Me</button>
+        <form>
+          <label>Pick an animal:
+            <select value={this.state.value} onChange={this.selectMenuChange}>
+              <option value={DEFAULT}>Cow</option>
+              <option value={SQUIRREL}>Squirrel</option>
+              <option value={KITTY}>Cat</option>
+              <option value={DRAGON}>Dragon</option>
+              <option value={DOGE}>Doge</option>
+              <option value={SATANIC}>Satan</option>
+            </select>
+          </label>
+        </form>
+        <button onClick={this.buttonClick}>Click Me</button>
         <pre>{this.state.content}</pre>
       </div>
     )
