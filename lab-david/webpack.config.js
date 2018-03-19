@@ -13,17 +13,17 @@ module.exports = {
   },
   plugins: [
     new HtmlPlugin({ template: `${__dirname}/src/index.html`}),
-    new ExtractPlugin('bundle-[hash]css'),
+    new ExtractPlugin('bundle-[hash].css'),
   ],
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'bable-loader',
+        loader: 'babel-loader',
       },
       {
-        text: /\.scss$/,
+        test: /\.scss$/,
         loader: ExtractPlugin.extract(['css-loader', 'sass-loader']),
       },
     ],

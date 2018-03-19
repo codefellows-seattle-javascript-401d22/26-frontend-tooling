@@ -1,4 +1,7 @@
 {
+  "plugins": [
+    "react"
+  ],
   "env": {
     "browser": true,
     "node": true,
@@ -12,9 +15,16 @@
     "res": true,
     "next": true
   },
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "parserOptions": {
-    "sourceType": "module"
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
     "no-console": "off",
