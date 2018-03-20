@@ -1,4 +1,4 @@
-![cf](https://i.imgur.com/7v5ASc8.png) Lab 25: Frontend Tooling
+![cf](https://i.imgur.com/7v5ASc8.png) Lab 26: Frontend Tooling
 ======
 
 ## Directory Structure
