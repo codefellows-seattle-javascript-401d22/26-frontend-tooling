@@ -28,6 +28,7 @@ class Cowsay extends React.Component{
   render(){
     const cow = cowsay.say({
       text: this.props.text,
+      e: 'O0',
       cow: cowsay.DRAGON,
     });
     return (
