@@ -3,6 +3,8 @@
 import './style/main.scss';
 import React from 'react';
 import ReactDom from 'react-dom';
+import faker from 'faker';
+import { say } from 'cowsay';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -12,7 +14,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <header className='custom-header'>
-        <h1> Counter app</h1>
+        <h1> Generate Cowsay Lorem</h1>
       </header>
     );
   }
@@ -24,8 +26,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'hello world',
-      count: 0,
+      content: '',
     };
 
     this.happening = 'first day of react';
@@ -33,8 +34,11 @@ class App extends React.Component {
   }
 
   handleClick(e) {
-    this.setState(state => {
-      return { count: state.count +1 };
+    this.setState( () => {
+      return { content: say({
+        text: faker.lorem.paragraph(),
+      }),
+      };
     });
   }
 
@@ -42,8 +46,8 @@ class App extends React.Component {
     return (
       <div>
         <Navbar />
-        <p onClick={this.handleClick}>Counter: {this.state.count}</p>
-        <p>{this.happening}</p>
+        <button onClick={this.handleClick}>Click Me</button>
+        <pre>  {this.state.content}</pre>
       </div>
     );
   }
