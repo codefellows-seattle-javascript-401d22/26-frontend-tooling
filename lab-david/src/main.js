@@ -20,6 +20,24 @@ class Navbar extends React.Component{
   }
 }
 
+class Cowsay extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    const cow = cowsay.say({
+      text: this.props.text,
+      cow: cowsay.DRAGON,
+    });
+    return (
+      <div>
+        <pre>{cow}</pre>
+      </div>
+    )
+  }
+}
+
 class App extends React.Component{
   constructor(props) {
     super(props);
@@ -40,7 +58,8 @@ class App extends React.Component{
     return(
       <div>
         <Navbar />
-        <pre onClick={this.handleClick}>{cow}</pre>
+        <Cowsay text={this.state.content}/>
+        <button onClick={this.handleClick}>Click Me!</button>
       </div>
     );
   }
