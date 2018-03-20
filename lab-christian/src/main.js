@@ -4,7 +4,7 @@ import './style/main.scss';
 import React from 'react';
 import ReactDom from 'react-dom';
 import faker from 'faker';
-import cowsay from 'cowsay';
+import cowsay from 'cowsay-browser';
 
 class Header extends React.Component {
   constructor(props) {
@@ -29,7 +29,19 @@ class App extends React.Component {
 
   handleButton(e) {
     this.setState(state => {
-      return { }
-    })
+      return { content: faker.lorem.sentence() }
+    });
+  }
+
+  render() {
+    const cow = cowsay.say({ text: this.state.content });
+    return (
+      <section>
+        <Header />
+        <pre onClick={this.handleButton}>click me {this.state.content}</pre>
+      </section>
+    );
   }
 }
+
+ReactDom.render(<App />, document.getElementById('root'));
